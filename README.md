@@ -9,24 +9,28 @@ SEPolymorphButton is a subclass of UIControl that simulate the basic behavior of
 
 #Usage
 
-	let polyButton = SEPolymorphButton()
-	view.addSubview(polyButton)
-	...
-	polyButton.changeStyle(.💛, animationDuration: 0.5)
-	// alternative: polyButton.changeStyle(.heartStyle, animationDuration: 0.5)
-	polyButton.changeStyle(.🌕, animationDuration: 0.5)
-	// alternative: polyButton.changeStyle(.circleStyle, animationDuration: 0.5)
-	polyButton.changeStyle(.🌟, animationDuration: 0.5)
-	// alternative: polyButton.changeStyle(.starStyle, animationDuration: 0.5)
+```swift
+let polyButton = SEPolymorphButton()
+view.addSubview(polyButton)
+...
+polyButton.changeStyle(.💛, animationDuration: 0.5)
+// alternative: polyButton.changeStyle(.heartStyle, animationDuration: 0.5)
+polyButton.changeStyle(.🌕, animationDuration: 0.5)
+// alternative: polyButton.changeStyle(.circleStyle, animationDuration: 0.5)
+polyButton.changeStyle(.🌟, animationDuration: 0.5)
+// alternative: polyButton.changeStyle(.starStyle, animationDuration: 0.5)
+```
 
 You can handle clicks by setting action for `TouchUpInside` control events:
 
-	polyButton.addTarget(self, action: "buttonDidPressed", forControlEvents: .TouchUpInside)
-	...
-	func buttonDidPressed()
-	{
-		println("yay!")
-	}
+```swift
+polyButton.addTarget(self, action: "buttonDidPressed", forControlEvents: .TouchUpInside)
+...
+func buttonDidPressed()
+{
+	println("yay!")
+}
+```
 
 #Configuration
 
