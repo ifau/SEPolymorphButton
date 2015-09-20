@@ -72,7 +72,7 @@ class SEPolymorphButton: UIControl
                     gradientLayer = CAGradientLayer()
                     gradientLayer!.frame = self.bounds
                     gradientLayer!.mask = outlanePath
-                    self.layer.addSublayer(gradientLayer)
+                    self.layer.addSublayer(gradientLayer!)
                 }
                 
                 var cgGradientColors : [CGColorRef] = []
@@ -142,7 +142,7 @@ class SEPolymorphButton: UIControl
         }
     }
     
-    required init(coder aDecoder: NSCoder)
+    required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
         setup()
@@ -184,7 +184,7 @@ class SEPolymorphButton: UIControl
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationDidEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
     {
         super.touchesBegan(touches, withEvent: event)
         
@@ -195,7 +195,7 @@ class SEPolymorphButton: UIControl
         }
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent)
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
     {
         super.touchesEnded(touches, withEvent: event)
         
@@ -217,8 +217,6 @@ class SEPolymorphButton: UIControl
                 changeStyle(.heartStyle, animationDuration: animationDuration)
             case .🌟:
                 changeStyle(.starStyle, animationDuration: animationDuration)
-            default:
-                return
         }
     }
     
@@ -238,8 +236,6 @@ class SEPolymorphButton: UIControl
                 finalPath = getHeartPath(outlanePath.frame)
             case .starStyle:
                 finalPath = getStarPath(outlanePath.frame)
-            default:
-                return
         }
         
         transformLayerPath(outlanePath, finalPath: finalPath.CGPath, animationDuration: animationDuration)
@@ -304,7 +300,7 @@ class SEPolymorphButton: UIControl
         }
     }
     
-    override func animationDidStop(anim: CAAnimation!, finished flag: Bool)
+    override func animationDidStop(anim: CAAnimation, finished flag: Bool)
     {
         isAnimating = false
     }
@@ -315,7 +311,7 @@ class SEPolymorphButton: UIControl
         isAnimating = false
     }
     
-    private func getCenteredFrame(#margins: Float) -> CGRect
+    private func getCenteredFrame(margins margins: Float) -> CGRect
     {
         let frame : CGRect
         let offset = CGFloat(margins)
@@ -340,7 +336,7 @@ class SEPolymorphButton: UIControl
     {
         let d : CGFloat = min(frame.size.height, frame.size.width)
         
-        var path = UIBezierPath()
+        let path = UIBezierPath()
         path.moveToPoint(CGPointMake(d*0.9572, d*0.2701))
         path.addCurveToPoint(CGPointMake(d*0.5, d*0.2387), controlPoint1: CGPointMake(d*0.9006, d*0.1151), controlPoint2: CGPointMake(d*0.6378, d*0.0323))
         path.addCurveToPoint(CGPointMake(d*0.0427, d*0.2701), controlPoint1: CGPointMake(d*0.3621, d*0.0323), controlPoint2: CGPointMake(d*0.0993, d*0.1151))
@@ -367,7 +363,7 @@ class SEPolymorphButton: UIControl
     {
         let d : CGFloat = min(frame.size.height, frame.size.width)
         
-        var path = UIBezierPath()
+        let path = UIBezierPath()
         path.moveToPoint(CGPointMake(d*0.5014, d*0.0428))
         path.addLineToPoint(CGPointMake(d*0.6485, d*0.3411))
         path.addLineToPoint(CGPointMake(d*0.9776, d*0.3888))
